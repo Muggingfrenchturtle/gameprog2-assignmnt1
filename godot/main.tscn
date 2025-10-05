@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://cvmvppkqr2eca"]
+
+[ext_resource type="Texture2D" uid="uid://opxfgc0wg4rr" path="res://circle_PNG16-1810669774.png" id="1_cmuv7"]
+[ext_resource type="Script" path="res://spincirclescript.cs" id="1_f2yyd"]
+[ext_resource type="PackedScene" uid="uid://dc7skuu8lcrpo" path="res://object.tscn" id="3_hc810"]
+[ext_resource type="Script" path="res://spawnerscript.cs" id="4_rhpgn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3kxxt"]
+
+[sub_resource type="Curve2D" id="Curve2D_hgm06"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1152, 0, 0, 0, 0, 0, 1152, 648, 0, 0, 0, 0, 0, 648, 0, 0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[node name="main" type="Node2D"]
+
+[node name="playerdial" type="Area2D" parent="."]
+position = Vector2(621, 330)
+script = ExtResource("1_f2yyd")
+
+[node name="circle" type="Sprite2D" parent="playerdial"]
+position = Vector2(1, 0)
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("1_cmuv7")
+
+[node name="playersprite" type="Sprite2D" parent="playerdial"]
+self_modulate = Color(1, 0, 0, 1)
+position = Vector2(66.535, 0)
+scale = Vector2(0.006, 0.006)
+texture = ExtResource("1_cmuv7")
+
+[node name="playerhitbox" type="CollisionShape2D" parent="playerdial"]
+position = Vector2(66.535, 0)
+scale = Vector2(1.51, 1.51)
+shape = SubResource("CircleShape2D_3kxxt")
+
+[node name="object" parent="." instance=ExtResource("3_hc810")]
+position = Vector2(373, 261)
+
+[node name="object2" parent="." instance=ExtResource("3_hc810")]
+position = Vector2(911.339, 265.375)
+
+[node name="spawnPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_hgm06")
+
+[node name="spawner" type="PathFollow2D" parent="spawnPath"]
+script = ExtResource("4_rhpgn")
+objectprefab = ExtResource("3_hc810")
