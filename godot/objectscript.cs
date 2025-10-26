@@ -14,7 +14,7 @@ public partial class objectscript : Area2D
 	{
 		playerhitbox =  GetNode<CollisionShape2D>("/root/main/playerdial/playerhitbox");
 
-
+        
 
         //find location of player
         objectforce.X = ((playerhitbox.GlobalPosition.X - GlobalPosition.X) / (float)Math.Sqrt(Math.Pow(playerhitbox.GlobalPosition.X - GlobalPosition.X, 2) + Math.Pow(playerhitbox.GlobalPosition.Y - GlobalPosition.Y, 2))) * shootForce;
